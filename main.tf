@@ -1,6 +1,7 @@
 module "vpc" {
   source = "./vpc"
 
+  vpc_cidr                   = "${var.vpc_cidr}"
   default_tags               = "${var.default_tags}"
   enable_vpc_flow_logs       = "${var.enable_vpc_flow_logs[terraform.workspace]}"
   flow_log_retention_in_days = "${var.flow_log_retention_in_days[terraform.workspace]}"
@@ -60,9 +61,7 @@ module "ec2_ssh" {
   db_clients_sg_id = "${module.sgs.db_clients_sg_id}"
 
   # Tags
-  default_tags   = "${var.default_tags}"
-  enable_backups = "${var.enable_backups}"
-  enable_chef    = "${var.enable_chef}"
+  default_tags = "${var.default_tags}"
 
   # Monitoring 
   enable_cw_metrics        = "${var.enable_cw_metrics}"

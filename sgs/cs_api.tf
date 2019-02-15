@@ -1,10 +1,10 @@
-resource "aws_security_group" "sg_flaskapi" {
-  name        = "${local.sg_flaskapi_name}"
-  description = "FlaskApi"
+resource "aws_security_group" "sg_cs_api" {
+  name        = "${local.sg_cs_api_name}"
+  description = "CS API"
   vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(var.default_tags, map(
-      "Name", "${local.sg_flaskapi_name}"
+      "Name", "${local.sg_cs_api_name}"
     ))}"
 }
 
@@ -12,34 +12,34 @@ resource "aws_security_group" "sg_flaskapi" {
 # Ingress
 ##########
 
-resource "aws_security_group_rule" "ir_ssh_flaskapi_t" {
+resource "aws_security_group_rule" "ir_ssh_cs_api_t" {
   type                     = "ingress"
   from_port                = 22
   to_port                  = 22
   protocol                 = "tcp"
   source_security_group_id = "${var.sg_ssh_id}"
   description              = "Allow SSH from bastion"
-  security_group_id        = "${aws_security_group.sg_flaskapi.id}"
+  security_group_id        = "${aws_security_group.sg_cs_api.id}"
 }
 
-resource "aws_security_group_rule" "ir_alb_flaskapi_t" {
+resource "aws_security_group_rule" "ir_alb_cs_api_t" {
   type                     = "ingress"
   from_port                = 5000
   to_port                  = 5000
   protocol                 = "tcp"
   source_security_group_id = "${aws_security_group.sg_alb.id}"
   description              = "Allow ALB on 5000"
-  security_group_id        = "${aws_security_group.sg_flaskapi.id}"
+  security_group_id        = "${aws_security_group.sg_cs_api.id}"
 }
 
 #########
 # Egress
 #########
-resource "aws_security_group_rule" "er_base_flaskapi" {
+resource "aws_security_group_rule" "er_base_cs_api" {
   type              = "egress"
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = "${aws_security_group.sg_flaskapi.id}"
+  security_group_id = "${aws_security_group.sg_cs_api.id}"
 }

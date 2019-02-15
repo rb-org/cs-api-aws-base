@@ -56,8 +56,8 @@ output "tux_sg_id" {
   value = "${module.sgs.tux_sg_id}"
 }
 
-output "flaskapi_sg_id" {
-  value = "${module.sgs.flaskapi_sg_id}"
+output "cs_api_sg_id" {
+  value = "${module.sgs.cs_api_sg_id}"
 }
 
 # S3

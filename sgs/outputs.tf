@@ -14,6 +14,6 @@ output "alb_sg_id" {
   value = "${aws_security_group.sg_alb.id}"
 }
 
-output "flaskapi_sg_id" {
-  value = "${aws_security_group.sg_flaskapi.id}"
+output "cs_api_sg_id" {
+  value = "${aws_security_group.sg_cs_api.id}"
 }
