@@ -48,10 +48,6 @@ output "alb_sg_id" {
   value = "${module.sgs.alb_sg_id}"
 }
 
-output "ssh_sg_id" {
-  value = "${module.ec2_ssh.sg_id}"
-}
-
 output "tux_sg_id" {
   value = "${module.sgs.tux_sg_id}"
 }

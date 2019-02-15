@@ -12,15 +12,15 @@ resource "aws_security_group" "sg_tux" {
 # Ingress
 ##########
 
-resource "aws_security_group_rule" "ir_base_tux_ssh_t" {
-  type                     = "ingress"
-  from_port                = 22
-  to_port                  = 22
-  protocol                 = "tcp"
-  source_security_group_id = "${var.sg_ssh_id}"
-  description              = "Allow SSH from bastion"
-  security_group_id        = "${aws_security_group.sg_tux.id}"
-}
+# resource "aws_security_group_rule" "ir_base_tux_ssh_t" {
+#   type                     = "ingress"
+#   from_port                = 22
+#   to_port                  = 22
+#   protocol                 = "tcp"
+#   source_security_group_id = "${var.sg_ssh_id}"
+#   description              = "Allow SSH from bastion"
+#   security_group_id        = "${aws_security_group.sg_tux.id}"
+# }
 
 #########
 # Egress
