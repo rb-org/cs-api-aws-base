@@ -31,7 +31,7 @@ jobs:
             .circleci/validate.sh
       - run: mkdir -p plans
       - run: terraform workspace select $WKSPC || terraform workspace new $WKSPC
-      - run: terraform plan -var account_id=$aws_acc_id -input=false
+      - run: terraform plan -var-file=env/${WKSPC}.tfvars -var account_id=$aws_acc_id -input=false
   dev_plan:
     docker:
       - image: hashicorp/terraform:light
@@ -63,7 +63,7 @@ jobs:
             .circleci/validate.sh
       - run: mkdir -p plans
       - run: terraform workspace select $WKSPC || terraform workspace new $WKSPC
-      - run: terraform plan -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
+      - run: terraform plan -var-file=env/${WKSPC}.tfvars -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
       - persist_to_workspace:
           root: plans
           paths:
@@ -126,7 +126,7 @@ jobs:
             .circleci/validate.sh
       - run: mkdir -p plans
       - run: terraform workspace select $WKSPC || terraform workspace new $WKSPC
-      - run: terraform plan -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
+      - run: terraform plan -var-file=env/${WKSPC}.tfvars -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
   uat_plan:
     docker:
       - image: hashicorp/terraform:light
@@ -158,11 +158,7 @@ jobs:
             .circleci/validate.sh
       - run: mkdir -p plans
       - run: terraform workspace select $WKSPC || terraform workspace new $WKSPC
-      - run: 
-          name: update_tfvars
-          command: |
-            echo "insert tfvars script here if needed"
-      - run: terraform plan -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
+      - run: terraform plan -var-file=env/${WKSPC}.tfvars -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
       - persist_to_workspace:
           root: plans
           paths:
@@ -225,11 +221,7 @@ jobs:
             .circleci/validate.sh
       - run: mkdir -p plans
       - run: terraform workspace select $WKSPC || terraform workspace new $WKSPC
-      - run: 
-          name: update_tfvars
-          command: |
-            echo "insert tfvars script here if needed"
-      - run: terraform plan -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
+      - run: terraform plan -var-file=env/${WKSPC}.tfvars -var-file=env/${WKSPC}.tfvars -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
   prd_plan:
     docker:
       - image: hashicorp/terraform:light
@@ -261,11 +253,7 @@ jobs:
             .circleci/validate.sh
       - run: mkdir -p plans
       - run: terraform workspace select $WKSPC || terraform workspace new $WKSPC
-      - run: 
-          name: update_tfvars
-          command: |
-            echo "insert tfvars script here if needed"
-      - run: terraform plan -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
+      - run: terraform plan -var-file=env/${WKSPC}.tfvars -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
       - persist_to_workspace:
           root: plans
           paths:
