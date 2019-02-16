@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "ir_alb_cs_api_t" {
   from_port                = 5000
   to_port                  = 5000
   protocol                 = "tcp"
-  source_security_group_id = "${aws_security_group.sg_alb.id}"
+  source_security_group_id = "${aws_security_group.alb.id}"
   description              = "Allow ALB on 5000"
   security_group_id        = "${aws_security_group.cs_api.id}"
 }
