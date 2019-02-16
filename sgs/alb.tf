@@ -1,10 +1,10 @@
 resource "aws_security_group" "alb" {
-  name        = "${local.alb_name}"
+  name        = "${local.sg_alb_name}"
   description = "ALB Inbound"
   vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(var.default_tags, map(
-      "Name", "${local.alb_name}"
+      "Name", "${local.sg_alb_name}"
     ))}"
 }
 

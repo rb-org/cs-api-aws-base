@@ -1,10 +1,10 @@
 resource "aws_security_group" "tux" {
-  name        = "${local.tux_name}"
+  name        = "${local.sg_tux_name}"
   description = "Applied to all Linux instances"
   vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(var.default_tags, map(
-      "Name", "${local.tux_name}"
+      "Name", "${local.sg_tux_name}"
     ))}"
 }
 
