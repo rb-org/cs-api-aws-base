@@ -1,10 +1,10 @@
-resource "aws_security_group" "sg_cs_api" {
-  name        = "${local.sg_cs_api_name}"
+resource "aws_security_group" "cs_api" {
+  name        = "${local.cs_api_name}"
   description = "CS API"
   vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(var.default_tags, map(
-      "Name", "${local.sg_cs_api_name}"
+      "Name", "${local.cs_api_name}"
     ))}"
 }
 
@@ -19,7 +19,7 @@ resource "aws_security_group" "sg_cs_api" {
 #   protocol                 = "tcp"
 #   source_security_group_id = "${var.sg_ssh_id}"
 #   description              = "Allow SSH from bastion"
-#   security_group_id        = "${aws_security_group.sg_cs_api.id}"
+#   security_group_id        = "${aws_security_group.cs_api.id}"
 # }
 
 resource "aws_security_group_rule" "ir_alb_cs_api_t" {
@@ -29,7 +29,7 @@ resource "aws_security_group_rule" "ir_alb_cs_api_t" {
   protocol                 = "tcp"
   source_security_group_id = "${aws_security_group.sg_alb.id}"
   description              = "Allow ALB on 5000"
-  security_group_id        = "${aws_security_group.sg_cs_api.id}"
+  security_group_id        = "${aws_security_group.cs_api.id}"
 }
 
 #########
@@ -41,5 +41,5 @@ resource "aws_security_group_rule" "er_base_cs_api" {
   to_port           = 0
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = "${aws_security_group.sg_cs_api.id}"
+  security_group_id = "${aws_security_group.cs_api.id}"
 }
