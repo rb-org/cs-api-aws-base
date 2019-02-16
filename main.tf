@@ -7,10 +7,6 @@ module "vpc" {
   flow_log_retention_in_days = "${var.flow_log_retention_in_days[terraform.workspace]}"
 }
 
-module "iam" {
-  source = "./iam"
-}
-
 module "s3" {
   source = "./s3"
 
