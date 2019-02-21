@@ -19,4 +19,3 @@
 | ssm\_bucket\_id | The name of the bucket |
 | ssm\_docs\_bucket\_arn | The ARN of the ssm docs bucket. Will be of format arn:aws:s3:::bucketname |
 | ssm\_docs\_bucket\_id | The name of the ssm docs bucket |
-
