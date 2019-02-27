@@ -71,3 +71,7 @@ output "ssm_patch_bucket_id" {
   description = "The name of the bucket"
   value       = "${module.s3.ssm_bucket_id}"
 }
+
+output "s3_cloudtrail_logs" {
+  value = "${module.s3.s3_cloudtrail_logs}"
+}

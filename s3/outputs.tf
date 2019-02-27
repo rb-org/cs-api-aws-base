@@ -27,3 +27,8 @@ output "s3_lb_logs_arn" {
   description = "The ARN of the bucket. Will be of format arn:aws:s3:::bucketname"
   value       = "${aws_s3_bucket.lb_logs.arn}"
 }
+
+output "s3_cloudtrail_logs" {
+  description = "Cloudtrail log bucket id"
+  value       = "${aws_s3_bucket.cloudtrail_logs.id}"
+}
